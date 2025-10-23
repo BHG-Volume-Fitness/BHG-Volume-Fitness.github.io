@@ -1,7 +1,32 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Responsive video container */
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 960px;     /* optional: cap width on large screens */
+    margin: auto;
+  }
 
-<video controls height="100%">
-  <source src="https://dl.dropboxusercontent.com/scl/fi/qo44dv9ko3u4lrxlmjv6v/VFX_presentation_final_1080p50.mp4?rlkey=ckuvas1rwdaqt08azfktxtife&st=jyhovgk4" type="video/mp4">
-</video>
+  .video-wrapper video {
+    width: 100%;
+    height: auto;         /* maintain aspect ratio */
+    border-radius: 12px;  /* optional: rounded corners */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+</style>
+</head>
 
+<body>
+  <div class="video-wrapper">
+    <video controls playsinline preload="metadata">
+      <source src="https://dl.dropboxusercontent.com/scl/fi/qo44dv9ko3u4lrxlmjv6v/VFX_presentation_final_1080p50.mp4?rlkey=ckuvas1rwdaqt08azfktxtife&st=jyhovgk4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</body>
 </html>
+
