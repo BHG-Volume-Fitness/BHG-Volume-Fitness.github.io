@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Auto-Fullscreen Dropbox Video</title>
+<title>Smart Fullscreen Dropbox Video</title>
 <style>
   body {
     background-color: #111;
@@ -44,33 +44,40 @@
 
   <script>
     const video = document.getElementById('myVideo');
+    const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
 
-    // Go fullscreen automatically when playback starts
-    video.addEventListener('play', () => {
-      if (!document.fullscreenElement) {
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (video.webkitRequestFullscreen) { // Safari
-          video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) { // IE11
-          video.msRequestFullscreen();
+    // Desktop browsers: auto fullscreen on play
+    if (!isMobile) {
+      video.addEventListener('play', () => {
+        if (!document.fullscreenElement) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
         }
-      }
-    });
+      });
 
-    // Exit fullscreen automatically when playback ends
-    video.addEventListener('ended', () => {
-      if (document.fullscreenElement) {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
+      // Exit fullscreen when video ends
+      video.addEventListener('ended', () => {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
         }
-      }
-    });
+      });
+    }
+
+    // Mobile browsers: rely on native fullscreen (no script fullscreen)
+    // Optional tweak: auto play inline once user presses play (browser handles fullscreen)
   </script>
 </body>
 </html>
+
 
