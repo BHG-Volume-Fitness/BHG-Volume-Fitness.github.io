@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Fullscreen Dropbox Video</title>
+<style>
+  body {
+    background-color: #111;
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 1rem;
+  }
+
+  .video-wrapper video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    display: block;
+  }
+</style>
+</head>
+
+<body>
+  <div class="video-wrapper">
+    <video id="myVideo" 
+           controls 
+           playsinline 
+           preload="metadata"
+           poster="bitmaps/vfx_video_thumbnail_gps_90.jpg">
+      <source src="https://dl.dropboxusercontent.com/scl/fi/szxdcq87my5y2sj3pg5sh/VFX_presentation_90s_5mb.mp4?rlkey=upff1ynqwhdc82heh3ger9jiw&st=wu1ecia7" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+
+    // Desktop browsers: auto fullscreen on play
+    if (!isMobile) {
+      video.addEventListener('play', () => {
+        if (!document.fullscreenElement) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+        }
+      });
+
+      // Exit fullscreen when video ends
+      video.addEventListener('ended', () => {
+        if (document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        }
+      });
+    }
+
+    // Mobile browsers: rely on native fullscreen (no script fullscreen)
+    // Optional tweak: auto play inline once user presses play (browser handles fullscreen)
+  </script>
+</body>
+</html>
+
+
