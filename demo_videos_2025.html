@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VFX Video Selector</title>
+<style>
+  body {
+    background-color: #111;
+    color: #fff;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    margin-top: 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+  }
+
+  .video-wrapper video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    background-color: #000;
+    display: block;
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .video-wrapper {
+      width: 30%;
+      margin: 1%;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <h1>Select a VFX Presentation</h1>
+
+  <!-- Video 1 -->
+  <div class="video-wrapper">
+    <video class="video-player" 
+           controls 
+           playsinline 
+           preload="metadata"
+           poster="bitmaps/vfx_video_thumbnail_gps.jpg">
+      <source src="https://dl.dropboxusercontent.com/scl/fi/zmq35f0coa9l3e36byrnx/VFX_presentation_2010playlist_1080p50_5mb_v2.mp4?rlkey=kayn0rfjydzavjp4uk0u5klt8&st=wza9xo1v" 
+              type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Video 2 -->
+  <div class="video-wrapper">
+    <video class="video-player" 
+           controls 
+           playsinline 
+           preload="metadata"
+           poster="bitmaps/vfx_video_thumbnail_gps_90.jpg">
+      <source src="https://dl.dropboxusercontent.com/scl/fi/szxdcq87my5y2sj3pg5sh/VFX_presentation_90s_5mb.mp4?rlkey=upff1ynqwhdc82heh3ger9jiw&st=wu1ecia7" 
+              type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Video 3 -->
+  <div class="video-wrapper">
+    <video class="video-player" 
+           controls 
+           playsinline 
+           preload="metadata"
+           poster="bitmaps/vfx_video_thumbnail_power.jpg">
+      <source src="https://dl.dropboxusercontent.com/scl/fi/s991a1pmssd9pnsnc9ng7/VFX_presentation_Power_Player_5mb.mp4?rlkey=dnwn9dhe7ivqauz2f6ombjcfs&st=l4qr31qt" 
+              type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    const videos = document.querySelectorAll('.video-player');
+    const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+
+    videos.forEach(video => {
+      // When one starts playing, pause all others
+      video.addEventListener('play', () => {
+        videos.forEach(v => {
+          if (v !== video && !v.paused) v.pause();
+        });
+
+        // Desktop fullscreen behavior
+        if (!isMobile && !document.fullscreenElement) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          }
+        }
+      });
+
+      // Exit fullscreen when finished
+      video.addEventListener('ended', () => {
+        if (!isMobile && document.fullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
