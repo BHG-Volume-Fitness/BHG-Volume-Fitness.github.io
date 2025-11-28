@@ -1,66 +1,27 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <link rel="icon" type="image/x-icon" href="bitmaps/vfx_icon.ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Fitness</title>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background-color: black;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
-    }
-
-    .image-container {
-      display: inline-block;
-      max-width: 100vw;
-      max-height: 100vh;
-      overflow: hidden;
-    }
-
-    .image-container img {
-      width: auto;
-      height: auto;
-      max-width: 100vw;
-      max-height: 95vh;
-      display: block;
-      margin: 0 auto; /* ensures horizontal centering */
-    }
-
-    .link-below {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 18px;
-      text-decoration: none;
-      color: #00aaff;
-    }
-
-    .link-below:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
-
 <body>
-  <div>
-    <div class="image-container">
-      <picture>
-        <source srcset="bitmaps/image002.jpg" media="(min-width: 768px) and (orientation: landscape)">
-        <img id="Picture1" src="bitmaps/image001.jpg" alt="Workout Inspiration">
-      </picture>
-    </div>
-
-    <!-- Properly centered link -->
-    <div>
-      <a href="mailto:brian.guralnick@volumefitness.ca" class="link-below">
-        Click here for business inquiries.
-      </a>
-    </div>
-  </div>
+    <iframe src="https://volume-fitness-landingpage.replit.app/"></iframe>
 </body>
-
 </html>
